@@ -45,20 +45,22 @@ var specialCharacter2='&';
 	 
 	 }
 	 else{
-	 formatedHeaderString='{ headers:'+'{'+formatedHeaderString+specialCharacter4+specialCharacter3+key+specialCharacter3+':'+specialCharacter3+headerDetails[key]+specialCharacter3+'}'+'}';
+	 formatedHeaderString='{ "headers":'+'{'+formatedHeaderString+specialCharacter4+specialCharacter3+key+specialCharacter3+':'+specialCharacter3+headerDetails[key]+specialCharacter3+'}'+'}';
 	 console.log('formatedHeaderString'+formatedHeaderString);
 	 }
 	 strHeaderLength=strHeaderLength+1;
 	 //console.log('formatedQueryString' + ' is ' + formatedQueryString);
    }
+   var JSONFormatheaderDet=new Object();
    var headerDetails=formatedHeaderString;
+   JSONFormatheaderDet=JSON.parse(headerDetails);
    console.log('headerDetails'+headerDetails)
 //}
  //console.log("EndpointURL----"+EndpointURL)
  var EndpointURL=Endpoint+Resource+formatedQueryString;
  frisby.create(TestCase)
  .get(EndpointURL
-  	,headerDetails)
+  	,JSONFormatheaderDet)
  //.inspectRequest()
   .inspectJSON()
   .afterJSON(function (body) {
