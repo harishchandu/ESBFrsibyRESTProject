@@ -14,6 +14,8 @@ var data = fs.readFileSync('sample_test_case.json');
  var TestCase=myObj.GETRESTServices.TestCases[i].Description;
  var headerDetails=myObj.GETRESTServices.TestCases[i].headerString;
  var queryString=myObj.GETRESTServices.TestCases[i].queryString;
+ var username=myObj.GETRESTServices.TestCases[i].UserName;
+ var password=myObj.GETRESTServices.TestCases[i].Password;
  console.log('QUERY STRING'+queryString)
 //for(i = 0; i < 2; i++) {
 //var str=queryString[0];
@@ -62,6 +64,7 @@ var specialCharacter2='&';
  .get(EndpointURL
   	,JSONFormatheaderDet)
  //.inspectRequest()
+ .auth(username,password,false)
   .inspectJSON()
   .afterJSON(function (body) {
   	//console.log("RESPONSE"+body)
