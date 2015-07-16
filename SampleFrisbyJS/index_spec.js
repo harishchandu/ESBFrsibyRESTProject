@@ -16,7 +16,12 @@ var data = fs.readFileSync('sample_test_case.json');
  var queryString=myObj.GETRESTServices.TestCases[i].queryString;
  var username=myObj.GETRESTServices.TestCases[i].UserName;
  var password=myObj.GETRESTServices.TestCases[i].Password;
- console.log('QUERY STRING'+queryString)
+ var expectedFormatJSON=new Object();
+ var expectedJSON=myObj.GETRESTServices.TestCases[i].assertions;
+ //expectedFormatJSON=JSON.parse(myObj.GETRESTServices.TestCases[i].expectedJSON);
+ //expectedJSON=expectedJSON.replace(/["]/g,"'");
+ //console.log('expectedJSON'+expectedJSON)
+ //console.log('QUERY STRING'+queryString)
 //for(i = 0; i < 2; i++) {
 //var str=queryString[0];
 //console.log('queryIndexString'+str);
@@ -53,10 +58,11 @@ var specialCharacter2='&';
 	 strHeaderLength=strHeaderLength+1;
 	 //console.log('formatedQueryString' + ' is ' + formatedQueryString);
    }
-   var JSONFormatheaderDet=new Object();
+    var JSONFormatheaderDet=new Object();
    var headerDetails=formatedHeaderString;
    JSONFormatheaderDet=JSON.parse(headerDetails);
    console.log('headerDetails'+headerDetails)
+   
 //}
  //console.log("EndpointURL----"+EndpointURL)
  var EndpointURL=Endpoint+Resource+formatedQueryString;
@@ -67,10 +73,26 @@ var specialCharacter2='&';
  .auth(username,password,false)
   .inspectJSON()
   .afterJSON(function (body) {
-  	//console.log("RESPONSE"+body)
-    expect(body.MobilePhoneNumber).toMatch(3603496654)
-   expect(body.status).toMatch('SUCCESS')
-    expect(body.MobilePhoneStatusCode).toMatch('V')
+  	//console.log("RESPONSE"+body.toString())
+	for(var key in expectedJSON)
+	{
+	var expectJSONKey=key;
+	//console.log('expectJSONKey'+expectJSONKey)
+	 for (var key in body)
+   {
+   var bodyJSONKey=key;
+   if(expectJSONKey==bodyJSONKey){
+   
+   //console.log('Key'+key)
+   //console.log('Value'+body[key])
+   var matchJSON=body[bodyJSONKey];
+   expect(matchJSON).toMatch(expectedJSON[expectJSONKey])
+   }
+   }
+   }
+    //expect(body.MobilePhoneNumber).toMatch(3603496654)
+   //expect(body.status).toMatch('SUCCESS')
+    //expect(body.MobilePhoneStatusCode).toMatch('V')
   })
    .toss() ;
  }
