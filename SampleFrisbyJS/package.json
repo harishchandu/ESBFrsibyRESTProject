@@ -8,8 +8,7 @@
     "url": "https://github.com/harishchandu/ESBFrisbyRESTAPI.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-	"ci-test": "istanbul cover jasmine-node  --test-dir  D:\Users\hmakkeni\Documents\GitHub\ESBFrsibyRESTProject\SampleFrisbyJS > test.tap && istanbul report clover"
+   	"ci-test": "istanbul cover jasmine-node  --test-dir  D:\Users\hmakkeni\Documents\GitHub\ESBFrsibyRESTProject\SampleFrisbyJS > test.tap && istanbul report clover"
   },
   "author": "hmakkeni",
   "license": "ISC",
