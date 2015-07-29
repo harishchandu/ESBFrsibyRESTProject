@@ -1,6 +1,8 @@
 var frisby = require('frisby');
 var util = require('util');
 var fs = require('fs');
+var export_module=require('./exports.js');
+//var export_headerDetailsModule=require('./exportHeader.js');
 var file = "test_case.json";
 var myObj=new Object();
 var data = fs.readFileSync('sample_test_case.json');
@@ -12,60 +14,24 @@ var data = fs.readFileSync('sample_test_case.json');
  var Resource=myObj.GETRESTServices.TestCases[i].Resource;
  var URL=myObj.GETRESTServices.TestCases[i].URL;
  var TestCase=myObj.GETRESTServices.TestCases[i].Description;
- var headerDetails=myObj.GETRESTServices.TestCases[i].headerString;
+ var hdrDetails=myObj.GETRESTServices.TestCases[i].headerString;
  var queryString=myObj.GETRESTServices.TestCases[i].queryString;
  var username=myObj.GETRESTServices.TestCases[i].UserName;
  var password=myObj.GETRESTServices.TestCases[i].Password;
  var expectedFormatJSON=new Object();
  var expectedJSON=myObj.GETRESTServices.TestCases[i].assertions;
- //expectedFormatJSON=JSON.parse(myObj.GETRESTServices.TestCases[i].expectedJSON);
- //expectedJSON=expectedJSON.replace(/["]/g,"'");
- //console.log('expectedJSON'+expectedJSON)
- //console.log('QUERY STRING'+queryString)
-//for(i = 0; i < 2; i++) {
-//var str=queryString[0];
-//console.log('queryIndexString'+str);
-var strLength=0;
-var formatedQueryString='';
-var specialCharacter1='?';
-var specialCharacter2='&';
-   for (var key in queryString)
-   {
-     if(strLength==0){
-	 formatedQueryString=specialCharacter1+key+'='+queryString[key];
-	 
-	 }
-	 else{
-	 formatedQueryString=formatedQueryString+specialCharacter2+key+'='+queryString[key];
-	 }
-	 strLength=strLength+1;
-	 //console.log('formatedQueryString' + ' is ' + formatedQueryString);
-   }
-   var formatedHeaderString='';
-   var specialCharacter3='"';
-   var specialCharacter4=',';
-   var strHeaderLength=0;
-   for (var key in headerDetails)
-   {
-     if(strHeaderLength==0){
-	 formatedHeaderString=specialCharacter3+key+specialCharacter3+':'+specialCharacter3+headerDetails[key]+specialCharacter3;
-	 
-	 }
-	 else{
-	 formatedHeaderString='{ "headers":'+'{'+formatedHeaderString+specialCharacter4+specialCharacter3+key+specialCharacter3+':'+specialCharacter3+headerDetails[key]+specialCharacter3+'}'+'}';
-	 console.log('formatedHeaderString'+formatedHeaderString);
-	 }
-	 strHeaderLength=strHeaderLength+1;
-	 //console.log('formatedQueryString' + ' is ' + formatedQueryString);
-   }
-    var JSONFormatheaderDet=new Object();
-   var headerDetails=formatedHeaderString;
+    
+   var JSONFormatheaderDet=new Object();
+  var headerDetails=export_module.reqHeaderDetails(hdrDetails);
+  // var headerDetails=export_headerDetailsModule.headerDetails(hdrDetails);
    JSONFormatheaderDet=JSON.parse(headerDetails);
    console.log('headerDetails'+headerDetails)
    
 //}
  //console.log("EndpointURL----"+EndpointURL)
- var EndpointURL=Endpoint+Resource+formatedQueryString;
+ var formatedQueryStr=export_module.queryStringDetails(queryString);
+ // console.log('formatedQueryStr'+formatedQueryStr)
+ var EndpointURL=Endpoint+Resource+formatedQueryStr;
  frisby.create(TestCase)
  .get(EndpointURL
   	,JSONFormatheaderDet)
