@@ -10,7 +10,7 @@ var specialCharacter2='&';
 for (var key in queryString)
    {
 
-   console.log('Query String in export.js'+queryString)
+   //console.log('Query String in export.js'+queryString)
      if(strLength==0){
 	 formatedQueryString=specialCharacter1+key+'='+queryString[key];
 	 
@@ -34,7 +34,7 @@ var strHeaderLength=0;
 for (var key in headerDetails)
    {
 
-   console.log('headr details in export.js'+headerDetails)
+   //console.log('headr details in export.js'+headerDetails)
      if(strHeaderLength==0){
 	 formatedHeaderString=specialCharacter3+key+specialCharacter3+':'+specialCharacter3+headerDetails[key]+specialCharacter3;
 	 
@@ -50,4 +50,14 @@ for (var key in headerDetails)
   return '{ "headers":'+'{'+formatedHeaderString+'}'+'}';
 };
 
-  
+// format the assertions
+
+  exports.actaulAssertions = function(assertions) {
+   //Header String varaibles initializations  
+var assertionJSONString='';
+
+
+
+  return assertionJSONString=assertions;
+};
+
