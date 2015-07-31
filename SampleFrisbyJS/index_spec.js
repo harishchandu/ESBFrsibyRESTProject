@@ -4,9 +4,28 @@ var fs = require('fs');
 var export_module=require('./exports.js');
 //var export_headerDetailsModule=require('./exportHeader.js');
 var file = "test_case.json";
+var dir='./get/';
 var myObj=new Object();
-var data = fs.readFileSync('sample_test_case.json');
- myObj = JSON.parse(data);
+function walkDirectory(currentDirPath, callback) {
+    var fs = require('fs'), path = require('path');
+    fs.readdirSync(currentDirPath).forEach(function(name) {
+        var filePath = path.join(currentDirPath, name);
+        var stat = fs.statSync(filePath);
+        if (stat.isFile()) {
+            callback(filePath, stat);
+        } else if (stat.isDirectory()) {
+            walkDirectory(filePath, callback);
+        }
+    });
+}
+walkDirectory(dir, function(filePath, stat) {
+    // do something with "filePath"...
+
+//var data = fs.readFileSync('sample_test_case.json');
+console.log('stats'+JSON.stringify(stat));
+var data = fs.readFileSync(filePath);
+ 
+myObj = JSON.parse(data);
  //console.log(myObj)
  for(i=0;i<myObj.TestSuite.TestCases.length;i++)
  {
@@ -59,4 +78,5 @@ var data = fs.readFileSync('sample_test_case.json');
 	    })(i);
    
  }
- 
+
+ });
