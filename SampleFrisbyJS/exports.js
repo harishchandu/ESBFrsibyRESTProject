@@ -1,63 +1,52 @@
-
-
 //export the Query String.
 exports.queryStringDetails = function(queryString) {
-   //Query String varaiables initializations
+   //varaiables initializations
 var strLength=0;
 var formatedQueryString='';
-var specialCharacter1='?';
-var specialCharacter2='&';
+var qstnmarkSplCharacter='?';
+var ampersandSplCharacter='&';
 for (var key in queryString)
    {
 
-   //console.log('Query String in export.js'+queryString)
+  
      if(strLength==0){
-	 formatedQueryString=specialCharacter1+key+'='+queryString[key];
+	 formatedQueryString=qstnmarkSplCharacter+key+'='+queryString[key];
 	 
 	 }
 	 else{
-	 formatedQueryString=formatedQueryString+specialCharacter2+key+'='+queryString[key];
+	 formatedQueryString=formatedQueryString+ampersandSplCharacter+key+'='+queryString[key];
 	 }
 	 strLength=strLength+1;
-	 //console.log('formatedQueryString' + ' is ' + formatedQueryString);
+	 
    }
    
   return formatedQueryString;
 };
 //export the Request Header detials.   
 exports.reqHeaderDetails = function(headerDetails) {
-   //Header String varaibles initializations  
+   //varaibles initializations  
 var formatedHeaderString='';
-var specialCharacter3='"';
-var specialCharacter4=',';
+var dblInvrtdCommaSplCharacter='"';
+var commaSplCharacter=',';
 var strHeaderLength=0;
 for (var key in headerDetails)
    {
 
-   //console.log('headr details in export.js'+headerDetails)
+   
      if(strHeaderLength==0){
-	 formatedHeaderString=specialCharacter3+key+specialCharacter3+':'+specialCharacter3+headerDetails[key]+specialCharacter3;
+	 formatedHeaderString=dblInvrtdCommaSplCharacter+key+dblInvrtdCommaSplCharacter+':'+dblInvrtdCommaSplCharacter+headerDetails[key]+dblInvrtdCommaSplCharacter;
 	 
 	 }
 	 else{
-	 formatedHeaderString=formatedHeaderString+specialCharacter4+specialCharacter3+key+specialCharacter3+':'+specialCharacter3+headerDetails[key]+specialCharacter3;
-	 //console.log('formatedHeaderString'+formatedHeaderString);
+	 formatedHeaderString=formatedHeaderString+commaSplCharacter+dblInvrtdCommaSplCharacter+key+dblInvrtdCommaSplCharacter+':'+dblInvrtdCommaSplCharacter+headerDetails[key]+dblInvrtdCommaSplCharacter;
+	 
 	 }
 	 strHeaderLength=strHeaderLength+1;
-	 //console.log('formatedHeaderString in export.js' + ' is ' + formatedHeaderString);
+	 
    }
 
   return '{ "headers":'+'{'+formatedHeaderString+'}'+'}';
 };
 
-// format the assertions
 
-  exports.actaulAssertions = function(assertions) {
-   //Header String varaibles initializations  
-var assertionJSONString='';
-
-
-
-  return assertionJSONString=assertions;
-};
 

@@ -2,10 +2,10 @@ var frisby = require('frisby');
 var util = require('util');
 var fs = require('fs');
 var export_module=require('./exports.js');
-//var export_headerDetailsModule=require('./exportHeader.js');
-var file = "test_case.json";
 var dir='./get/';
 var myObj=new Object();
+
+//search for the files in the specified directory
 function walkDirectory(currentDirPath, callback) {
     var fs = require('fs'), path = require('path');
     fs.readdirSync(currentDirPath).forEach(function(name) {
@@ -19,14 +19,12 @@ function walkDirectory(currentDirPath, callback) {
     });
 }
 walkDirectory(dir, function(filePath, stat) {
-    // do something with "filePath"...
-
-//var data = fs.readFileSync('sample_test_case.json');
-console.log('stats'+JSON.stringify(stat));
+  
+//Read the data from the file
 var data = fs.readFileSync(filePath);
  
 myObj = JSON.parse(data);
- //console.log(myObj)
+ //collect the Test Cases
  for(i=0;i<myObj.TestSuite.TestCases.length;i++)
  {
  var Endpoint=myObj.TestSuite.TestCases[i].Endpoint;
@@ -39,35 +37,33 @@ myObj = JSON.parse(data);
  var password=myObj.TestSuite.TestCases[i].Password;
  var expectedFormatJSON=new Object();
  
- //var actualJSONObj=myObj.TestSuite.TestCases[i].assertions;
 
-   //console.log("Actaul RESPONSE----------"+JSON.stringify(actualJSONObj)) 
    var JSONFormatheaderDet=new Object();
   var headerDetails=export_module.reqHeaderDetails(hdrDetails);
-  // var headerDetails=export_headerDetailsModule.headerDetails(hdrDetails);
+  
    JSONFormatheaderDet=JSON.parse(headerDetails);
-   console.log('headerDetails'+headerDetails)
+  
    
-//}
- //console.log("EndpointURL----"+EndpointURL)
+
  var formatedQueryStr=export_module.queryStringDetails(queryString);
- // console.log('formatedQueryStr'+formatedQueryStr)
+ 
  
 
  var EndpointURL=Endpoint+Resource+formatedQueryStr;
  (function(i) {
+ // call Frsiby Test API 
  frisby.create(TestCase)
  .get(EndpointURL
   	,JSONFormatheaderDet)
- //.inspectRequest()
- .auth(username,password,false)
+  .auth(username,password,false)
   .inspectJSON()
   .afterJSON(function (body) {
-  	console.log("Expected RESPONSE"+JSON.stringify(body))
+  
+  
 	var assertions=myObj.TestSuite.TestCases[i].assertions;
-	console.log("Actaul RESPONSE"+'iterator'+i+JSON.stringify(assertions))
+	
 	 	
-	    
+	//evaluate the assertions    
 	
  expect(JSON.stringify(body)).toMatch(JSON.stringify(assertions))
   
