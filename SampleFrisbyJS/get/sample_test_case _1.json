@@ -3,7 +3,7 @@
     "TestCases":[
     
       {
-        "Description": "Validates the phone number and returns valid",
+        "Description": "INVALID TARGET SERVICE NAME",
         "Endpoint": "http://esbdev.wm.com:8888",
         "Resource" : "/rest/businessservices/v1/customers/services/services",
         "UserName" : "ocsuser",
