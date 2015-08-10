@@ -5,75 +5,15 @@
       {
         "Description": "Validates the phone number and returns valid",
         "Endpoint": "http://esbdev.wm.com:8888",
-        "Resource" : "/v1/customers/phone",
-        "UserName" : "crmuser",
-        "Password" :"crmuser",
-        "phoneNumber": "3603496654",
-        "action":  "Status",
-		"queryString":{"phoneNumber": "3603496654","action":  "Status"},
-		"headerString":{"Request-Tracking-Id":"12", "ProfileId": "1"},
-		"assertions":{"Request-Tracking-Id":12, "status": "SUCCESS","errorMessage":""}
+        "Resource" : "/rest/businessservices/v1/customers/services/services",
+        "UserName" : "ocsuser",
+        "Password" :"ocsuser",
+		"queryString":{"customerId": "000105267723008","noOfDaysInPast":"60","serviceStatsFlag":  "Y"},
+		"headerString":{"Request-Tracking-Id":"12", "ProfileId": "1","Cache-Control":"no-cache"},
+		"assertions":"Could not find service for service key %targetServiceKey%"
         
-      },
-      {
-        "Description": "Validates the phone number and returns Invalid phone number",
-        "Endpoint": "http://esbdev.wm.com:8888",
-        "Resource" : "/v1/customers/phone",
-        "UserName" : "crmuser",
-        "Password" :"crmuser",
-        "phoneNumber": "7422864490",
-        "action":  "Status",
-		"queryString":{"phoneNumber": "7422864490","action":  "Status"},
-		"headerString":{"Request-Tracking-Id":"12", "ProfileId": "1"},
-		"assertions":{"Request-Tracking-Id":12, "status": "ERROR","errorMessage":""}
-      },
-      {
-        "Description": "Validates the phone number and  returns phoneNumber is a required field",
-        "Endpoint": "http://esbdev.wm.com:8888",
-        "Resource" : "/v1/customers/phone",
-        "UserName" : "crmuser",
-        "Password" :"crmuser",
-        "phoneNumber": "",
-        "action":  "Status",
-		"queryString":{"action":  "Status"},
-		"headerString":{"Request-Tracking-Id":"12", "ProfileId": "1"},
-		"assertions":{"Request-Tracking-Id":12, "status": "ERROR","errorMessage":"phoneNumber is a required field"}
-		
-      },
-      {
-        "Description": "Validates the phone number and returns action  is a required field",
-        "Endpoint": "http://esbdev.wm.com:8888",
-        "Resource" : "/v1/customers/phone",
-        "UserName" : "crmuser",
-        "Password" :"crmuser",
-        "phoneNumber": "3603496654",
-        "action":  "",
-		"queryString":{"phoneNumber": "3603496654"},
-		"headerString":{"Request-Tracking-Id":"12", "ProfileId": "1"},
-		"assertions":{"Request-Tracking-Id":12, "status": "ERROR","errorMessage":"action is a required field"}
-      },
-      {
-        "Description": "Validates the phone number and  returns  phoneNumber is a required field",
-        "Endpoint": "http://esbdev.wm.com:8888",
-        "Resource" : "/v1/customers/phone",
-        "UserName" : "crmuser",
-        "Password" :"crmuser",
-        "action":  "Status",
-		"queryString":{"action":  "Status"},
-		"headerString":{"Request-Tracking-Id":"12", "ProfileId": "1"},
-		"assertions":{"Request-Tracking-Id":12, "status": "ERROR","errorMessage":"phoneNumber is a required field"}
-      },
-      {
-        "Description": "Validates the phone number and returns action  is a required field",
-        "Endpoint": "http://esbdev.wm.com:8888",
-        "Resource" : "/v1/customers/phone",
-        "UserName" : "crmuser",
-        "Password" :"crmuser",
-        "phoneNumber": "3603496654",
-		"queryString":{"action":  "Status"},
-		"headerString":{"Request-Tracking-Id":"12", "ProfileId": "1"},
-		"assertions":{"Request-Tracking-Id":12, "status": "ERROR","errorMessage":"phoneNumber is a required field"}
       }
+      
     ]
   }
 }
