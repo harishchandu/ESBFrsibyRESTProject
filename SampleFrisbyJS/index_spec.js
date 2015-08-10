@@ -52,6 +52,7 @@ myObj = JSON.parse(data);
  var EndpointURL=Endpoint+Resource+formatedQueryStr;
  (function(i) {
  // call Frsiby Test API 
+ var assertions=myObj.TestSuite.TestCases[i].assertions; 
  frisby.create(TestCase)
  .get(EndpointURL
   	,JSONFormatheaderDet)
@@ -61,7 +62,7 @@ myObj = JSON.parse(data);
   .afterJSON(function (body) {
   
   
-	var assertions=myObj.TestSuite.TestCases[i].assertions;
+	//var assertions=myObj.TestSuite.TestCases[i].assertions;
 	
 	 	
 	//evaluate the assertions    
