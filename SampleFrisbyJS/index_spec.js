@@ -58,7 +58,6 @@ myObj = JSON.parse(data);
   	,JSONFormatheaderDet)
   .auth(username,password,false)
   .inspectJSON()
-  .expectBodyContains(assertions)
   .afterJSON(function (body) {
   
   
@@ -67,7 +66,7 @@ myObj = JSON.parse(data);
 	 	
 	//evaluate the assertions    
 	
- //expect(JSON.stringify(body)).toMatch(JSON.stringify(assertions))
+ expect(JSON.stringify(body)).toMatch(assertions)
   
 		
    
