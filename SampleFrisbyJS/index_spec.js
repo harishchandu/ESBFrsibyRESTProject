@@ -4,7 +4,7 @@ var fs = require('fs');
 var export_module=require('./exports.js');
 var dir='./get/';
 var myObj=new Object();
-require('jasmine-expect');
+//require('jasmine-expect');
 //search for the files in the specified directory
 function walkDirectory(currentDirPath, callback) {
     var fs = require('fs'), path = require('path');
