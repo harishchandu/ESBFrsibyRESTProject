@@ -2,7 +2,7 @@
   "TestSuite": {
     "TestCases":[
 		{
-        "Description": "Validates the phone number and returns valid",
+        "Description": "TEST SUITE-getPlanServcies | TEST CASE-1 : INVALID TARGET SERVICE NAME",
         "Endpoint": "http://esbdev.wm.com:8888",
         "Resource" : "/rest/businessservices/v1/customers/services/services",
         "UserName" : "ocsuser",
@@ -14,7 +14,7 @@
         },
     
       {
-        "Description": "Validates the phone number and returns valid",
+        "Description": "TEST SUITE-getPlanServcies | TEST CASE-2 : SHOULD RETURN THE EXPECTED RESULT FOR THE PROVIDED CUSTOMER ID",
         "Endpoint": "http://esbdev.wm.com:8888",
         "Resource" : "/rest/businessservices/v1/customers/services/services",
         "UserName" : "ocsuser",
@@ -25,7 +25,7 @@
 		"status":200
         },
 		{
-        "Description": "Validates the phone number and returns valid",
+        "Description": "TEST SUITE-getPlanServcies | TEST CASE-3 : SERVICE ID IS NOT MATCHING FOR THE PROVIDED CUSTOMER ID",
         "Endpoint": "http://esbdev.wm.com:8888",
         "Resource" : "/rest/businessservices/v1/customers/services/services",
         "UserName" : "ocsuser",
@@ -36,7 +36,7 @@
 		"status":200
         },
 		{
-        "Description": "Validates the phone number and returns valid",
+        "Description": "TEST SUITE-getPlanServcies | TEST CASE-4 : SERVICE CODE IS NOT MATCHING FOR THE PROVIDED CUSTOMER ID",
         "Endpoint": "http://esbdev.wm.com:8888",
         "Resource" : "/rest/businessservices/v1/customers/services/services",
         "UserName" : "ocsuser",
@@ -47,7 +47,7 @@
 		"status":200
         },
 		{
-        "Description": "Validates the phone number and returns valid",
+        "Description": "TEST SUITE-getPlanServcies | TEST CASE-5 : TOTAL COUNT IS NOT MATCHED FOR THE PROVIDED CUSTOMER ID",
         "Endpoint": "http://esbdev.wm.com:8888",
         "Resource" : "/rest/businessservices/v1/customers/services/services",
         "UserName" : "ocsuser",
