@@ -59,16 +59,16 @@ myObj = JSON.parse(data);
  .get(EndpointURL
   	,JSONFormatheaderDet)
   .auth(username,password,false)
-  .inspectJSON()
+  //.inspectJSON()
   .expectStatus(statusCode)
   //.expectBodyContains(assertions)
   .expectJSON(myObj.TestSuite.TestCases[i].assertions)
   .afterJSON(function (body) {
  
-  console.log('BODY------------'+JSON.stringify(body))
+  /console.log('BODY------------'+JSON.stringify(body))
   
 	
-  console.log('ASSERTIONS------------'+assertions)
+ // console.log('ASSERTIONS------------'+assertions)
 	 	
 	//evaluate the assertions    
 	
