@@ -4,7 +4,7 @@ var fs = require('fs');
 var export_module=require('./exports.js');
 var dir='./get/';
 var myObj=new Object();
-
+require('jasmine-expect');
 //search for the files in the specified directory
 function walkDirectory(currentDirPath, callback) {
     var fs = require('fs'), path = require('path');
@@ -51,24 +51,30 @@ myObj = JSON.parse(data);
 
  var EndpointURL=Endpoint+Resource+formatedQueryStr;
  (function(i) {
- // call Frsiby Test API 
- var assertions=myObj.TestSuite.TestCases[i].assertions; 
+ // call Frsiby Test API
+ var assertions=myObj.TestSuite.TestCases[i].assertions;
+ var statusCode=myObj.TestSuite.TestCases[i].status;
  frisby.create(TestCase)
+ .addHeader('Accept','application/json')
  .get(EndpointURL
   	,JSONFormatheaderDet)
   .auth(username,password,false)
   .inspectJSON()
+  .expectStatus(statusCode)
+  //.expectBodyContains(assertions)
+  .expectJSON(myObj.TestSuite.TestCases[i].assertions)
   .afterJSON(function (body) {
+ 
+  console.log('BODY------------'+JSON.stringify(body))
   
-  
-	//var assertions=myObj.TestSuite.TestCases[i].assertions;
 	
+  console.log('ASSERTIONS------------'+assertions)
 	 	
 	//evaluate the assertions    
 	
- expect(JSON.stringify(body)).toMatch(assertions)
-  
-		
+//expect(JSON.stringify(body)).toMatch(assertions)
+
+	//expect(body).toHaveArrayOfObjects(myObj.TestSuite.TestCases[i].assertions);	
    
 	})
 	   .toss() ;

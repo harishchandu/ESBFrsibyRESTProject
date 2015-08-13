@@ -1,0 +1,62 @@
+{
+  "TestSuite": {
+    "TestCases":[
+		{
+        "Description": "Validates the phone number and returns valid",
+        "Endpoint": "http://esbdev.wm.com:8888",
+        "Resource" : "/rest/businessservices/v1/customers/services/services",
+        "UserName" : "ocsuser",
+        "Password" :"ocsuser",
+		"queryString":{"customerId":"000038513183000"},
+		"headerString":{"Request-Tracking-Id":"12", "ProfileId": "1","Cache-Control":"no-cache","Accept":"application/json"},
+		"assertions":{"error":{"code":"503","message":"Service Error","location":"ESB","errors":[{"location":"ESB","message":"Could not find service for service key %targetServiceKey%"}]}},
+		"status":503
+        },
+    
+      {
+        "Description": "Validates the phone number and returns valid",
+        "Endpoint": "http://esbdev.wm.com:8888",
+        "Resource" : "/rest/businessservices/v1/customers/services/services",
+        "UserName" : "ocsuser",
+        "Password" :"ocsuser",
+		"queryString":{"customerId":"000038513183000"},
+		"headerString":{"Request-Tracking-Id":"12", "ProfileId": "eBiz_118","Cache-Control":"no-cache","Accept":"application/json"},
+		"assertions":{"services":[{"id":"000000000","wm_metadata":{"service_code":"AAP","customer_order_number":"null","customer_service_number":"null"},"status":"Confirmed Positive","ticket_number":"576294","ticket_type":"--","exception_reason_code":"null","exception_class":"null","service_time":"null","planned_date":"09/28/2015","ordered_date":"09/28/2015","ticket_load_type":"BTN","operations":[{"route_id":"null","route_order_number":"null"}]}],"metadata":[{"totalCount":"1"}]},
+		"status":200
+        },
+		{
+        "Description": "Validates the phone number and returns valid",
+        "Endpoint": "http://esbdev.wm.com:8888",
+        "Resource" : "/rest/businessservices/v1/customers/services/services",
+        "UserName" : "ocsuser",
+        "Password" :"ocsuser",
+		"queryString":{"customerId":"000038513183000"},
+		"headerString":{"Request-Tracking-Id":"12", "ProfileId": "eBiz_118","Cache-Control":"no-cache","Accept":"application/json"},
+		"assertions":{"services":[{"id":"000000011","wm_metadata":{"service_code":"AAP","customer_order_number":"null","customer_service_number":"null"},"status":"Confirmed Positive","ticket_number":"576294","ticket_type":"--","exception_reason_code":"null","exception_class":"null","service_time":"null","planned_date":"09/28/2015","ordered_date":"09/28/2015","ticket_load_type":"BTN","operations":[{"route_id":"null","route_order_number":"null"}]}],"metadata":[{"totalCount":"1"}]},
+		"status":200
+        },
+		{
+        "Description": "Validates the phone number and returns valid",
+        "Endpoint": "http://esbdev.wm.com:8888",
+        "Resource" : "/rest/businessservices/v1/customers/services/services",
+        "UserName" : "ocsuser",
+        "Password" :"ocsuser",
+		"queryString":{"customerId":"000038513183000"},
+		"headerString":{"Request-Tracking-Id":"12", "ProfileId": "eBiz_118","Cache-Control":"no-cache","Accept":"application/json"},
+		"assertions":{"services":[{"id":"000000000","wm_metadata":{"service_code":"ABP","customer_order_number":"null","customer_service_number":"null"},"status":"Confirmed Positive","ticket_number":"576294","ticket_type":"--","exception_reason_code":"null","exception_class":"null","service_time":"null","planned_date":"09/28/2015","ordered_date":"09/28/2015","ticket_load_type":"BTN","operations":[{"route_id":"null","route_order_number":"null"}]}],"metadata":[{"totalCount":"1"}]},
+		"status":200
+        },
+		{
+        "Description": "Validates the phone number and returns valid",
+        "Endpoint": "http://esbdev.wm.com:8888",
+        "Resource" : "/rest/businessservices/v1/customers/services/services",
+        "UserName" : "ocsuser",
+        "Password" :"ocsuser",
+		"queryString":{"customerId":"000038513183000"},
+		"headerString":{"Request-Tracking-Id":"12", "ProfileId": "eBiz_118","Cache-Control":"no-cache","Accept":"application/json"},
+		"assertions":{"services":[{"id":"000000000","wm_metadata":{"service_code":"AAP","customer_order_number":"null","customer_service_number":"null"},"status":"Confirmed Positive","ticket_number":"576294","ticket_type":"--","exception_reason_code":"null","exception_class":"null","service_time":"null","planned_date":"09/28/2015","ordered_date":"09/28/2015","ticket_load_type":"BTN","operations":[{"route_id":"null","route_order_number":"null"}]}],"metadata":[{"totalCount":"0"}]},
+		"status":200
+        }
+    ]
+  }
+}
